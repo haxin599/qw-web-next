@@ -1,0 +1,119 @@
+.tab {
+    width: 188px;
+    height: 93px;
+    opacity: 0.8;
+    background: #DE6243;
+    letter-spacing: 5px;
+    background: url('../public/images/tab-bg-1.png');
+}
+
+.active {
+    color: #B3867B;
+    background: url('../public/images/tab-bg-2.png');
+}
+
+.line {
+    width: 1px;
+    height: 46px;
+    background:  #C7573B;
+    margin-left: 110px;
+}
+.lineH,.lineB {
+    width: 214px;
+    height: 1px;
+    background:#FFFFFF;
+    margin: 20px 0 10px 0;
+}
+
+.lineB {
+    background:#000;
+}
+.sanjiao,.sanjiaoB {
+width: 15px;
+height: 15px;
+margin-left:8px;
+border-radius: 2px;
+transform: rotate(41.93deg);
+border: 1px solid #FFFFFF;
+}
+.sanjiaoB {
+    border: 1px solid #000;
+}
+.title {
+
+/** 文本1 */
+font-size: 20px;
+font-weight: 900;
+letter-spacing: 10px;
+line-height: 23.44px;
+color: rgba(255, 112, 77, 1);
+}
+.count {
+/** 文本1 */
+font-size: 40px;
+font-weight: 600;
+letter-spacing: 5px;
+line-height: 50px;
+color: rgba(255, 255, 255, 1);
+text-align: left;
+
+}
+
+.introduce {
+    padding: 0 80px;
+    position: relative;
+}
+.indexBg {
+    box-sizing: border-box;
+    margin: auto;
+    width: 100%;
+    background: url('../public/images/index-bg.png') no-repeat;
+    padding: 100px 120px;
+    background-size: 100% 100%;
+}   
+    .introduceTitle {
+    /** 文本1 */
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 15px;
+    color: rgba(212, 73, 38, 1);
+    text-align: left;
+    
+    }
+    .introduceContent {
+    /** 文本1 */
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: 5px;
+    line-height: 55px;
+    color: rgba(72, 37, 34, 1);
+    text-align: left;
+ }
+
+
+.cultureSize {
+    width: 100%;
+    height: 20rem;
+}
+.cultureText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4.8rem;
+    height: 4.8rem;
+    background: #D44926;
+    font-size: 2.25rem;
+    font-weight: 400;
+    letter-spacing: 10px;
+    color: #fff;
+}
+.verticalText {
+    letter-spacing: 5px;
+    writing-mode: vertical-rl; /* 文字从上到下竖排，从右到左 */
+}
+.cultureBg {
+    position: absolute;
+    left: 0;
+    bottom: -30px;
+    width: 100%;
+}

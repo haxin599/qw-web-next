@@ -1,0 +1,26 @@
+.tab,.active {
+    width: 133px;
+    height: 66px;
+    background: #DE6243;
+    letter-spacing: 5px;
+    background: url('../public/images/tab-bg-1.png') no-repeat;
+    background-size: 100% 100%;
+    color: #fff;
+    
+}
+.tabText {
+    border-right: 1px solid #C7573B;
+  
+}
+.active {
+    color: #B3867B;
+    background: url('../public/images/tab-bg-2.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+.line {
+    width: 1px;
+    height: 28px;
+    background:#C7573B;
+}
+
