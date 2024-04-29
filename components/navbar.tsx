@@ -14,7 +14,7 @@ import {
 } from "@nextui-org/react";
 
 import { link as linkStyles } from "@nextui-org/theme";
-
+import { useRouter } from 'next/router';
 import { siteConfig } from "@/config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
@@ -97,9 +97,9 @@ export const Navbar = () => {
 		/>
 	);
 
-	function handleClick() {
-		console.log('点击')
-	}
+
+
+	const router = useRouter();
 	// const icons = {
 	// 	chevron: <ChevronDown fill="currentColor" size={16} />,
 	// 	scale: <Scale className="text-warning" fill="currentColor" size={30} />,
@@ -110,19 +110,42 @@ export const Navbar = () => {
 	// 	user: <TagUser className="text-danger" fill="currentColor" size={30} />,
 	// };
 	return (
-		<NextUINavbar maxWidth="xl" position="sticky" >
+		<NextUINavbar maxWidth="xl" isBlurred={false} position="static" classNames={{
+			item: [
+				"flex",
+				"relative",
+				"h-full",
+				"items-center",
+				"data-[active=true]:after:content-['']",
+				"data-[active=true]:after:absolute",
+				"data-[active=true]:after:bottom-[4px]",
+				"data-[active=true]:after:left-[50%]",
+				"data-[active=true]:after:translate-x-[-50%]",
+				"data-[active=true]:after:right-0",
+				"data-[active=true]:after:h-[4px]",
+				"data-[active=true]:after:w-[32px]",
+				"data-[active=true]:after:rounded-[10px]",
+				"data-[active=true]:after:bg-primary",
+			],
+			base: ["bg-transparent"]
+		}}  >
 			<NavbarContent>
 				<NavbarBrand className="gap-3 max-w-fit">
 					<NextLink className="flex justify-start items-center gap-1" href="/">
-						<Logo />
-						<p className="font-black  text-xl color-D44926 text-D44926 tracking-10">青岩古镇</p>
+						{/* <Logo /> */}
+						<p className=" text-xl color-[#D44926] text-[#D44926] text-[20px] tracking-[5px] font-black">青岩古镇</p>
 					</NextLink>
 				</NavbarBrand>
 			</NavbarContent>
 
 			<NavbarContent className="gap-20">
 				{siteConfig.navItems.map((item, index) => (
-					<MyItem isActive={true} href={item.href} children={item.children} label={item.label} key={index} />
+					<NavbarItem className="gap-84" isActive={router.pathname === item.href}>
+						<Link color="primary" className="text-[24px] text-[#D44926]" href={item.href} key={index}>
+							{item.label}
+						</Link>
+					</NavbarItem>
+					// <MyItem isActive={true} href={item.href} children={item.children} label={item.label} key={index} />
 				))}
 			</NavbarContent>
 

@@ -15,23 +15,27 @@ export default function Swiper() {
 
     };
     return (
-        <div className="slider-container">
+        <div className="slider-container" style={{ marginBottom: '-8px', marginTop: '-68px' }}>
             <Slider {...settings}>
                 <div>
-                    <Image
+                    <img src="https://img.js.design/assets/img/660a1fca446df72277a2f258.jpg#85cf2774fbc5f97503d53b825629b3d5" alt="" />
+                    {/* <Image
                         width="100%"
                         radius="none"
                         alt="NextUI hero Image"
+                        height={599}
                         src="https://img.js.design/assets/img/660a1fca446df72277a2f258.jpg#85cf2774fbc5f97503d53b825629b3d5"
-                    />
+                    /> */}
                 </div>
                 <div>
-                    <Image
+                    <img src="https://img.js.design/assets/img/660a1fca446df72277a2f258.jpg#85cf2774fbc5f97503d53b825629b3d5" alt="" />
+                    {/* <Image
                         width="100%"
                         radius="none"
+                        height={599}
                         alt="NextUI hero Image"
-                        src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-                    />
+                        src="https://img.js.design/assets/img/660a1fca446df72277a2f258.jpg#85cf2774fbc5f97503d53b825629b3d5"
+                    /> */}
                 </div>
             </Slider>
         </div>

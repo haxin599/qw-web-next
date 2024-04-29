@@ -18,20 +18,6 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      'C7573B': '#C7573B',
-      '482522': '#482522',
-      'FFFBEB': '#FFFBEB',
-      '90604D': '#90604D',
-      'F5EDD0': '#F5EDD0',
-      '692A1B': '#692A1B',
-      'D44926': '#D44926',
-      'F49F0A': '#F49F0A',
-      'B8DAF0': '#B8DAF0',
-      '80352F': '#80352F',
-      'black': '#000000',
-      'white': '#ffffff',
-      '1A1818': '#1A1818',
-      '2D3134': '2D3134'
     },
   },
   darkMode: "class",
@@ -39,7 +25,7 @@ module.exports = {
     themes: {
       light: {
         colors: {
-          background: "#FFFFFF", // or DEFAULT
+          background: "#FCF6E2", // or DEFAULT
           foreground: "#000000", // or 50 to 900 DEFAULT
           primary: {
             //... 50 to 900

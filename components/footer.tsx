@@ -21,10 +21,10 @@ export const Footer = () => {
 
     return (
         <div className="flex flex-col justify-center items-center">
-            <div className="font-black text-F49F0A  text-4xl tracking-10 mt-9">
+            <div className="font-bold text-[#F49F0A]  text-4xl tracking-[5px] mt-9">
                 青岩古镇
             </div>
-            <div className="w-full flex justify-around px-7 pb-7  max-w-screen-xl">
+            <div className="w-full flex justify-between px-7 pb-7  max-w-screen-xl text-[#fff]">
                 <div>
                     <h1 className="text-base">投诉电话</h1>
                     <h1 className="text-sm mt-7">0851-9982761</h1>
@@ -38,8 +38,8 @@ export const Footer = () => {
                     ))}
                 </div>
             </div>
-            <div className="w-full size-px bg-B8DAF0" />
-            <div className="text-sm py-7 ">
+            <div className="w-full size-px bg-[#B8DAF0]" />
+            <div className="text-sm py-7 text-[#fff]">
                 @2024-2030 www.qingyanguzheng 贵州青岩古镇景区版权所有
             </div>
         </div>

@@ -1,37 +1,37 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-	name: "Next.js + NextUI",
+	name: "青岩官网",
 	description: "Make beautiful websites regardless of your design experience.",
 	navItems: [
 		{
 			label: "首页",
 			href: "/",
-			key: "key1",
+			key: "index",
 			children: []
 		},
 		{
 			label: "青岩文化",
 			href: "/culture",
-			key: "key2",
+			key: "culture",
 			children: []
 		},
 		{
 			label: "景区视角",
-			href: "/pricing",
-			key: "key3",
+			href: "/perspective",
+			key: "perspective",
 			children: []
 		},
 		{
 			label: "景区服务",
-			href: "/blog",
-			key: "key4",
+			href: "/service",
+			key: "service",
 			children: []
 		},
 		{
 			label: "景区咨询",
-			href: "/home",
-			key: "key5",
+			href: "/consult",
+			key: "consult",
 			children: []
 		}
 	],

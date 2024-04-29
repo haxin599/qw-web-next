@@ -3,21 +3,41 @@
 @tailwind utilities;
 html {
     box-sizing: border-box;
+    background-color: #FCF6E2;
 }
 body {
     box-sizing: border-box;
-}
-.tracking-10 {
-    letter-spacing: 10px;
-}
+    background-color: #FCF6E2;
 
-
-.nav-bg {
-    background: #F9ECC3;
 }
 
 
-.footer-bg {
-    background: #692A1B;
+
+
+.tab,.active {
+    width: 155px;
+    height: 66px;
+    background: #DE6243;
+    letter-spacing: 5px;
+    background: url('../public/images/tab-bg-2.png') no-repeat;
+    background-size: 100% 100%;
+    color: #B3867B;
+    
 }
+.tabText {
+    border-right: 1px solid #C7573B;
+  
+}
+.active {
+    background: url('../public/images/tab-bg-1.png') no-repeat;
+    color: #fff;
+    background-size: 100% 100%;
+}
+
+.line {
+    width: 1px;
+    height: 28px;
+    background:#C7573B;
+}
+
 
