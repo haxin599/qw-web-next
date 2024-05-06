@@ -29,7 +29,7 @@ const HeadTitle = ({ title1, title2, title3, address = "中国 贵阳青岩古�
     return (
         <div className="flex p-5  justify-between pb-14 flex-wrap">
             <div className="flex items-end font-semibold" >
-                <div class="border-l-2 border-[#C7573B] h-44 mr-4"></div>
+                <div className="border-l-2 border-[#C7573B] h-44 mr-4"></div>
                 <div className={`${styles.verticalText} text-2xl text-[#482522] font-semibold`}>
                     {title1}
                 </div>
@@ -69,35 +69,51 @@ const InfoCard = ({ index }) => {
 }
 
 
-const CardT = () => {
-    return (
-        <div className=" px-5">
-            <HeadTitle title1="万寿宫" title2="Scenic spot publicity" title3="景区宣传" />
-            <div className="flex">
-                <img className='rounded-[20px] w-[594px] h-[430px]' src="https://img.js.design/assets/img/66175a8dfdbe3d13f2c230e1.jpg#87af34dc574282874b46f4eca7f35759" alt="" />
-                <div className="px-5">
-                    <div className="flex items-center">
-                        <div className={styles.sanjiaoB} />
-                        <div className="text-[#D44926] mx-3 text-[24px] tracking-[5px]">-  万寿宫  -</div>
-                        <div className={styles.sanjiaoB} />
-                    </div>
-                    <div className="text-[#692A1B] text-[18px] tracking-[5px] mt-[20px] leading-8 font-semibold">
-                        位于西街3号，毗邻慈云寺。清康熙年间建，嘉庆三年(1798年)重修，最早才十A'2E片227，川U72西会馆，为南来北往的商贾之所，后来改造为道观。万寿宫系穿斗式硬山顶砖木结构建筑，整座宫院由正殿、配殿、西厢、戏楼和生活区构成一组建筑群，坐东向西，占地2000平方米，结构严谨规模较大...
-                    </div>
-                    <div className="text-[#D44926] text-[24px] tracking-[5px] flex justify-between font-semibold">
-                        <div className="flex justify-center items-center w-[53px] text-center h-[165px] text-[#692A1B] text-[18px] bg-auto tracking-[5px] bg-[url('/images/good-bg-l.png')]">
-                            <span className="w-[20px]">文昌阁</span>
+const CardT = ({ current }) => {
+    if (current === 1) {
+        return (
+            <div className=" px-5">
+                <HeadTitle title1="万寿宫" title2="Scenic spot publicity" title3="景区宣传" />
+                <div className="flex">
+                    <img className='rounded-[20px] w-[594px] h-[430px]' src="https://img.js.design/assets/img/66175a8dfdbe3d13f2c230e1.jpg#87af34dc574282874b46f4eca7f35759" alt="" />
+                    <div className="px-5">
+                        <div className="flex items-center">
+                            <div className={styles.sanjiaoB} />
+                            <div className="text-[#D44926] mx-3 text-[24px] tracking-[5px]">-  万寿宫  -</div>
+                            <div className={styles.sanjiaoB} />
                         </div>
-                        <div className="flex justify-center items-center w-[53px] text-center h-[165px] text-[#692A1B] text-[18px] bg-auto tracking-[5px] bg-[url('/images/good-bg-l.png')]">
-                            <span className="w-[20px]">文昌阁</span>
-                        </div>  <div className="flex justify-center items-center w-[53px] text-center h-[165px] text-[#692A1B] text-[18px] bg-auto tracking-[5px] bg-[url('/images/good-bg-l.png')]">
-                            <span className="w-[20px]">文昌阁</span>
+                        <div className="text-[#692A1B] text-[18px] tracking-[5px] mt-[20px] leading-8 font-semibold">
+                            位于西街3号，毗邻慈云寺。清康熙年间建，嘉庆三年(1798年)重修，最早才十A'2E片227，川U72西会馆，为南来北往的商贾之所，后来改造为道观。万寿宫系穿斗式硬山顶砖木结构建筑，整座宫院由正殿、配殿、西厢、戏楼和生活区构成一组建筑群，坐东向西，占地2000平方米，结构严谨规模较大...
+                        </div>
+                        <div className="text-[#D44926] text-[24px] tracking-[5px] flex justify-between font-semibold">
+                            <div className="flex justify-center items-center w-[53px] text-center h-[165px] text-[#692A1B] text-[18px] bg-auto tracking-[5px] bg-[url('/images/good-bg-l.png')]">
+                                <span className="w-[20px]">文昌阁</span>
+                            </div>
+                            <div className="flex justify-center items-center w-[53px] text-center h-[165px] text-[#692A1B] text-[18px] bg-auto tracking-[5px] bg-[url('/images/good-bg-l.png')]">
+                                <span className="w-[20px]">文昌阁</span>
+                            </div>  <div className="flex justify-center items-center w-[53px] text-center h-[165px] text-[#692A1B] text-[18px] bg-auto tracking-[5px] bg-[url('/images/good-bg-l.png')]">
+                                <span className="w-[20px]">文昌阁</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return (
+            <div className={styles.indexBg}>
+                <div className={styles.introduceText}>
+                    <h1 className={styles.introduceTitle}>
+                        景区介绍
+                    </h1>
+                    <div className={styles.introduceContent}>
+                        青岩古镇是贵州省著名的历史文化名镇，形成于明洪武年间，历明清两代，迄今6百余年。历史悠久，人文荟萃，文化氛围极为浓郁。因附近多青色岩峰而得名，古为屯田驻兵之地。位于贵阳市南郊、距市区约29公里，距花溪南12公里处。它是贵州四大古镇(青岩、镇远、丙安、隆里)之一，始建于明洪武十年(1378年)，至今已有六百多年历史。古镇内设计精巧、工艺精湛的明清古建筑交错密布，寺庙、楼阁画栋雕梁、飞角重檐相间。 悠悠古韵，被誉为中国最具魅力小镇之一。古镇的建筑依山就势，布局合理，石雕、木雕工艺精湛，蕴含着许多神话传说和浓郁的地方特色，令人叹为观止。
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
 }
 
 export default function IndexPage() {
@@ -137,17 +153,8 @@ export default function IndexPage() {
             <section className="bg-[#FFFBEB] ">
                 <div className="max-w-7xl mx-auto py-10">
 
-                    {/* <div className={styles.indexBg}>
-                        <div className={styles.introduceText}>
-                            <h1 className={styles.introduceTitle}>
-                                景区介绍
-                            </h1>
-                            <div className={styles.introduceContent}>
-                                青岩古镇是贵州省著名的历史文化名镇，形成于明洪武年间，历明清两代，迄今6百余年。历史悠久，人文荟萃，文化氛围极为浓郁。因附近多青色岩峰而得名，古为屯田驻兵之地。位于贵阳市南郊、距市区约29公里，距花溪南12公里处。它是贵州四大古镇(青岩、镇远、丙安、隆里)之一，始建于明洪武十年(1378年)，至今已有六百多年历史。古镇内设计精巧、工艺精湛的明清古建筑交错密布，寺庙、楼阁画栋雕梁、飞角重檐相间。 悠悠古韵，被誉为中国最具魅力小镇之一。古镇的建筑依山就势，布局合理，石雕、木雕工艺精湛，蕴含着许多神话传说和浓郁的地方特色，令人叹为观止。
-                            </div>
-                        </div>
-                    </div> */}
-                    <CardT />
+
+                    <CardT current={current} />
                 </div>
             </section>
 
