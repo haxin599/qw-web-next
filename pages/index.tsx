@@ -1,8 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Swiper from "@/components/swiper";
 import styles from '../styles/Home.module.css';
 import { Image } from "@nextui-org/react";
 import MenuItem from '@/components/menuItem'
+
+import { apiIndex } from '@/config/api/api'
+
 const CultureItem = () => {
     return (
         <div className="flex w-full md:w-1/2 p-6">
@@ -118,6 +121,9 @@ const CardT = ({ current }) => {
 
 export default function IndexPage() {
     const [current, setcurrent] = useState(0);
+    const [bannerList, setBannerList] = useState([1, 2]);
+    const [cultureList, setCultureList] = useState([1, 2, 3]);
+
     const handleClick = (index) => {
         setcurrent(index); // 切换 clicked 的值
     };
@@ -127,13 +133,29 @@ export default function IndexPage() {
         label: '景区宣传'
     }]
     const infoList = [1, 2, 3, 4, 5]
+
+
+    const fetchData = async () => {
+        try {
+            const res = await apiIndex()
+            console.log(res)
+            setBannerList(res.data.carouselList)
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+
     return (
         <div>
             <section>
-                <Swiper></Swiper>
+                <Swiper bannerList={bannerList}></Swiper>
             </section>
             <section className="bg-[#692A1B]">
-                <div className="flex px-10 items-center justify-between h-40">
+                <div className="flex px-10 items-center justify-between h-40 max-w-7xl  mx-auto p-4">
                     <div className="flex items-center" >
 
                         <MenuItem infoList={tabList} current={current} source="home" onChildEvent={handleClick} />
@@ -164,7 +186,7 @@ export default function IndexPage() {
                     <HeadTitle title1="了解青岩" title2="Scenic spot publicity" title3="青岩文化" />
 
                     <div className="flex  flex-wrap  text-[#692A1B]">
-                        {infoList.map((item, index) => (
+                        {cultureList.map((item, index) => (
                             <CultureItem key={index} />
                         ))}
                     </div>

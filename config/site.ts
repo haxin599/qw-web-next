@@ -23,15 +23,21 @@ export const siteConfig = {
 			children: []
 		},
 		{
+			label: "景区咨询",
+			href: "/consult",
+			key: "consult",
+			children: []
+		},
+		{
 			label: "景区服务",
 			href: "/service",
 			key: "service",
 			children: []
 		},
 		{
-			label: "景区咨询",
-			href: "/consult",
-			key: "consult",
+			label: "企业简介",
+			href: "/info",
+			key: "info",
 			children: []
 		}
 	],

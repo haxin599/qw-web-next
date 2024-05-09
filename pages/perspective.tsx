@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Swiper from "@/components/swiper";
 import Cards from '@/components/card'
 import MenuItem from '@/components/menuItem'
 import { Tabs, Tab } from "@nextui-org/react";
+import { apiVisualAngle } from '@/config/api/api'
 
 export default function Service() {
     const [current, setcurrent] = useState(0);
@@ -16,11 +17,24 @@ export default function Service() {
         label: '美景视频'
     }]
     const list = [1, 2, 3, 4, 5, 6, 7, 8]
+
+    const fetchData = async (params) => {
+        try {
+            const res = await apiVisualAngle()
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     return (
         <div>
-            {/* <section>
+            <section>
                 <Swiper></Swiper>
-            </section> */}
+            </section>
             <section className="bg-[#692A1B]">
                 <div className="max-w-7xl mx-auto">
                     <MenuItem infoList={infoList} current={current} onChildEvent={handleClick} />

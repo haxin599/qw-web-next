@@ -2,7 +2,7 @@
 import axios from 'axios'
  
 const instance = axios.create({
-  baseURL: 'http://ddzstest.wechat.szzh.vip/prod-api',
+  baseURL: 'http://8.137.56.237/dev-api',
   timeout: 10000,
 })
  

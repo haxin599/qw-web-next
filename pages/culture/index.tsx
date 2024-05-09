@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Swiper from "@/components/swiper";
 import Cards from '@/components/card'
 import MenuItem from '@/components/menuItem'
-
+import { apiCulture } from '@/config/api/api'
 
 
 
@@ -30,11 +30,24 @@ export default function Home() {
         label: '建筑文化'
     }]
 
+
+    const fetchData = async (params) => {
+        try {
+            const res = await apiCulture()
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     return (
         <div>
-            {/* <section>
+            <section>
                 <Swiper></Swiper>
-            </section> */}
+            </section>
             <section className="bg-[#692A1B]">
                 <div className="max-w-[1560px]  mx-auto">
                     <MenuItem infoList={infoList} current={current} onChildEvent={handleClick} />

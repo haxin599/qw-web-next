@@ -40,4 +40,45 @@ body {
     background:#C7573B;
 }
 
+.slick-slide {
+    border: none!important;
+}
+/* 移除点击内容的边框 */
+.slick-slide:focus {
+    outline: none!important; /* 移除轮播项的聚焦边框 */
+  }
+.slick-prev {
+    left: 40px!important; /* 距离左边界的距离 */
+    width: 100px!important;
+    height: 100px!important;
+    z-index: 999;
+  }
+  
+  /* 调整右箭头按钮的位置 */
+  .slick-next {
+    right: 40px!important; /* 距离右边界的距离 */
+    width: 100px!important;
+    height: 100px!important;
+  }
 
+ /* 修改点状指示器的大小 */
+
+  
+  /* 修改点状指示器的位置 */
+  .slick-dots {
+    bottom: 25px!important;
+  }
+  .slick-dots li  {
+    width: 50px!important; /* 设置点的宽度 */
+    height: 50px!important; /* 设置点的高度 */
+  }
+  /* 可选：修改点状指示器的颜色 */
+  .slick-dots li button:before {
+    color: #D44926!important;
+    font-size: 30px!important;
+  }
+  
+  /* 可选：修改激活状态点的颜色 */
+  .slick-dots li.slick-active button:before {
+    color: #D44926!important;
+  }
