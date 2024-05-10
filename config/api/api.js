@@ -43,3 +43,12 @@ export function apiVisualAngle(params) {
     params
   })
 }
+
+// 资讯详情  
+export function apiConsultDetail(params) {
+  return request({
+    url: '/app/content/consult/details',
+    method: 'get',
+    params
+  })
+}
