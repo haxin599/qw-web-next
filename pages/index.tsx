@@ -107,31 +107,35 @@ const InfoCard = ({ index, title, subTitle, onChildEvent }) => {
 }
 
 
-const CardT = ({ current }) => {
+const CardT = ({ current, list, info, onChildEvent }) => {
+    const handleClick = (index) => {
+        // Call the callback function passed from the parent component
+        onChildEvent(index);
+    };
+
     if (current === 1) {
         return (
             <div className=" px-5">
-                <HeadTitle title1="万寿宫" title2="Scenic spot publicity" title3="景区宣传" />
+                <HeadTitle title1={info.scenicSpotName} title2="Scenic spot publicity" title3="景区宣传" />
                 <div className="flex">
-                    <img className='rounded-[20px] w-[594px] h-[430px]' src="https://img.js.design/assets/img/66175a8dfdbe3d13f2c230e1.jpg#87af34dc574282874b46f4eca7f35759" alt="" />
-                    <div className="px-5">
+                    <img className='rounded-[20px] w-[594px] h-[430px]' src={info.coverPicture} />
+                    <div className="px-5 flex-1 flex flex-col">
                         <div className="flex items-center">
                             <div className={styles.sanjiaoB} />
-                            <div className="text-[#D44926] mx-3 text-[24px] tracking-[5px]">-  万寿宫  -</div>
+                            <div className="text-[#D44926] mx-3 text-[24px] tracking-[5px]">-  {info.scenicSpotName}  -</div>
                             <div className={styles.sanjiaoB} />
                         </div>
                         <div className="text-[#692A1B] text-[18px] tracking-[5px] mt-[20px] leading-8 font-semibold">
-                            位于西街3号，毗邻慈云寺。清康熙年间建，嘉庆三年(1798年)重修，最早才十A'2E片227，川U72西会馆，为南来北往的商贾之所，后来改造为道观。万寿宫系穿斗式硬山顶砖木结构建筑，整座宫院由正殿,配殿,西厢,戏楼和生活区构成一组建筑群，坐东向西，占地2000平方米，结构严谨规模较大...
+
+                            <div dangerouslySetInnerHTML={{ __html: info.scenicSpotIntroduce }} />
                         </div>
-                        <div className="text-[#D44926] text-[24px] tracking-[5px] flex justify-between font-semibold">
-                            <div className="flex justify-center items-center w-[53px] text-center h-[165px] text-[#692A1B] text-[18px] bg-auto tracking-[5px] bg-[url('/images/good-bg-l.png')]">
-                                <span className="w-[20px]">文昌阁</span>
-                            </div>
-                            <div className="flex justify-center items-center w-[53px] text-center h-[165px] text-[#692A1B] text-[18px] bg-auto tracking-[5px] bg-[url('/images/good-bg-l.png')]">
-                                <span className="w-[20px]">文昌阁</span>
-                            </div>  <div className="flex justify-center items-center w-[53px] text-center h-[165px] text-[#692A1B] text-[18px] bg-auto tracking-[5px] bg-[url('/images/good-bg-l.png')]">
-                                <span className="w-[20px]">文昌阁</span>
-                            </div>
+                        <div className="text-[#D44926] mt-auto text-[24px] tracking-[5px] flex justify-between font-semibold">
+
+                            {list.map((item, index) => (
+                                <div key={index} onClick={() => handleClick(index)} className={`flex justify-center items-center w-[53px] cursor-pointer text-center h-[165px] text-[#692A1B] text-[18px] bg-auto tracking-[5px] ${info.id === item.id ? " bg-[url('/images/good-bg-l-active.png')] text-[#fff]" : " bg-[url('/images/good-bg-l.png')] "}`}>
+                                    <span className="w-[20px]">{item.scenicSpotName}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -158,6 +162,8 @@ export default function IndexPage({ data }) {
     const router = useRouter();
     console.log('data===', data)
     const [current, setcurrent] = useState(0);
+    const [scenicInfo, setScenicInfo] = useState({});
+
     const handleClick = (index) => {
         setcurrent(index); // 切换 clicked 的值
     };
@@ -167,7 +173,7 @@ export default function IndexPage({ data }) {
         label: '景区宣传'
     }]
     const jump = (index) => {
-        console.log(index)
+
         router.push(`/culture?pageType=${index}`);
     }
     const jumpDetail = (item, type) => {
@@ -175,10 +181,17 @@ export default function IndexPage({ data }) {
         router.push(`/consult/${item.id}?type=${type}`);
     }
 
+    const handleChange = (index) => {
+        console.log(index)
+        setScenicInfo(data.scenicSpotList[index])
+    }
+    useEffect(() => {
+        data && setScenicInfo(data.scenicSpotList[0])
+    }, []);
     return (
         <div>
             <section>
-                <Swiper bannerList={(data.carouselList && data.carouselList) || []}></Swiper>
+                <Swiper bannerList={(data && data.carouselList) || []}></Swiper>
             </section>
             <section className="bg-[#692A1B]">
                 <div className="flex px-10 items-center justify-between h-40 max-w-7xl  mx-auto p-4">
@@ -202,7 +215,7 @@ export default function IndexPage({ data }) {
                 <div className="max-w-7xl mx-auto py-10">
 
 
-                    <CardT current={current} />
+                    <CardT onChildEvent={handleChange} current={current} info={scenicInfo} list={data.scenicSpotList} />
                 </div>
             </section>
 
@@ -212,7 +225,7 @@ export default function IndexPage({ data }) {
                     <HeadTitle title1="了解青岩" title2="Scenic spot publicity" title3="青岩文化" />
 
                     <div className="flex  flex-wrap  text-[#692A1B]">
-                        {data.cultureList && data.cultureList.map((item, index) => (
+                        {data && data.cultureList.map((item, index) => (
                             <CultureItem onChildEvent={() => jump(index)} key={index} current={index} cover={item.culturePicture} name={item.cultureName} introduce={item.scenicSpotIntroduce} />
                         ))}
                     </div>
@@ -232,7 +245,7 @@ export default function IndexPage({ data }) {
                             />
                         </div>
                         <div className="w-full ml-3 md:w-2/5 flex flex-col p-6">
-                            {data.announcementList && data.announcementList.map((item, index) => (
+                            {data && data.announcementList.map((item, index) => (
                                 <InfoCard key={index} onChildEvent={() => jumpDetail(item, 4)} index={index} title={item.infoTitle} subTitle={item.infoContent} />
                             ))}
                         </div>
@@ -246,14 +259,14 @@ export default function IndexPage({ data }) {
                             />
                         </div>
                         <div className="w-full ml-3 md:w-3/5 flex flex-col p-6">
-                            {data.consultList && data.consultList.map((item, index) => (
+                            {data && data.consultList.map((item, index) => (
                                 <div className="mb-3 group cursor-pointer" onClick={() => jumpDetail(item, 1)}>
                                     <div className="flex items-center px-5 bg-[#fff] h-[70px]" >
                                         <span className={index < 3 ? 'text-[#D44926] text-3xl font-bold' : 'text-[#1A1818] text-3xl font-bold'}>
                                             {index + 1}
                                         </span>
                                         <span className="text-[#80352F] font-semibold text-lg  ml-5">
-                                            {item.infoTitle}内容的的标题
+                                            {item.infoTitle}
                                         </span>
                                     </div>
                                     <img className="w-full h-[60px] hidden group-hover:block transition duration-700 ease-in-out" src="https://img.js.design/assets/img/660a1fca446df72277a2f258.jpg#85cf2774fbc5f97503d53b825629b3d5" />

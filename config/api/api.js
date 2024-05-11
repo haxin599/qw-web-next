@@ -7,6 +7,7 @@ export function apiIndex(params) {
     params
   })
 }
+// 景区资讯
 export function apiConsult(params) {
   return request({
     url: '/app/content/consult',
@@ -14,6 +15,8 @@ export function apiConsult(params) {
     params
   })
 }
+
+// 景区文化
 export function apiCulture(params) {
   return request({
     url: '/app/content/culture',
@@ -21,6 +24,7 @@ export function apiCulture(params) {
     params
   })
 }
+// 企业信息
 export function apiIntroduction(params) {
   return request({
     url: '/app/content/introduction',
@@ -28,6 +32,7 @@ export function apiIntroduction(params) {
     params
   })
 }
+// 景区服务
 export function apiServe(params) {
   return request({
     url: '/app/content/serve',
@@ -35,7 +40,7 @@ export function apiServe(params) {
     params
   })
 }
-
+// 景区视角
 export function apiVisualAngle(params) {
   return request({
     url: '/app/content/visualAngle',
@@ -43,6 +48,15 @@ export function apiVisualAngle(params) {
     params
   })
 }
+// 视频图片分类
+export function apiPerspectiveType(params) {
+  return request({
+    url: '/app/content/perspective/listAll',
+    method: 'get',
+    params
+  })
+}
+
 
 // 资讯详情  
 export function apiConsultDetail(params) {

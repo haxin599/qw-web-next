@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
 
-import Swiper from "@/components/swiper";
-import Cards from '@/components/card'
 import MenuItem from '@/components/menuItem'
 import { apiCulture } from '@/config/api/api'
 
@@ -60,7 +58,7 @@ export default function Home({ data }) {
     return (
         <div>
             <section>
-                <Swiper></Swiper>
+                <img className="w-full mt-[-68px]" src="https://img.zcool.cn/community/01f8f95c1c48c0a8012029ac57a301.jpg@1280w_1l_2o_100sh.jpg" />
             </section>
             <section className="bg-[#692A1B]">
                 <div className="max-w-[1560px]  mx-auto">
