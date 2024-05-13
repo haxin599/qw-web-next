@@ -4,30 +4,33 @@ import React from "react";
 import Slider from "react-slick";
 
 import { Image } from "@nextui-org/react";
-export default function Swiper({ bannerList = [1, 2, 3] }) {
+export default function Swiper({ bannerList }) {
     var settings = {
         dots: true,
         autoplay: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
+        adaptiveHeight: true,
         arrows: true,
+
         prevArrow: <img src="/images/arrow-left.png" alt="Previous" />,
         nextArrow: <img src="/images/arrow-right.png" alt="Next" />,
 
     };
+    //console.log('bannerList===', bannerList)
     return (
         <div className="slider-container" style={{ marginBottom: '-8px', marginTop: '-68px' }}>
             <Slider {...settings}>
                 {bannerList.map((item, index) => (
                     <Image
+                        key={index}
                         width="100%"
                         radius="none"
-                        alt="NextUI hero Image"
-                        src="https://img.zcool.cn/community/01f8f95c1c48c0a8012029ac57a301.jpg@1280w_1l_2o_100sh.jpg"
+                        alt="Next Image"
+                        src={item.picture}
                     />
                 ))}
+
             </Slider>
         </div>
     );

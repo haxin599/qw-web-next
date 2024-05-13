@@ -43,10 +43,13 @@ export default function Service({ data, data1 }) {
 
     const [current, setcurrent] = useState(0);
     const [list, setList] = useState([]);
+
+    const [name, setName] = useState("美景图库");
     const [selected, setSelected] = useState(1);
     const [typeList, setTypeList] = useState([]);
     const handleClick = (index) => {
         setcurrent(index); // 切换 clicked 的值
+        setName(infoList[index].label)
         changeType(index + 1)
     };
     const infoList = [{
@@ -102,7 +105,7 @@ export default function Service({ data, data1 }) {
                     <div className='flex justify-between items-center'>
                         <div className='w-2/5 pl-14'>
                             <h1 className='text-[#482522] font-semibold text-lg tracking-[5px]'>Scenic spot publicity</h1>
-                            <h1 className='text-[#80352F] font-semibold text-4xl tracking-[5px]'>美景图库</h1>
+                            <h1 className='text-[#80352F] font-semibold text-4xl tracking-[5px]'>{name}</h1>
                         </div>
                         <div className='w-full'>
                             <Tabs onSelectionChange={handleTabChange} selectedKey={selected} fullWidth variant="underlined" color="primary" aria-label="Options" classNames={{
@@ -118,9 +121,8 @@ export default function Service({ data, data1 }) {
                         </div>
                     </div>
                     <div className="grid grid-cols-3  gap-4 mt-[50px]">
-                        {list.map((item, index) => (
-                            <img src={item.fileUrl} className="w-[400px] h-[400px]" key={index} />
-                        ))}
+                        <Media list={list} type={current} />
+
                     </div>
                 </div>
 
@@ -129,4 +131,28 @@ export default function Service({ data, data1 }) {
             </section>
         </div >
     );
+}
+
+
+const Media = ({ list, type }) => {
+    console.log(list)
+    if (type == 0) {
+        return (
+            <>
+                {list.map((item, index) => (
+                    <img src={item.fileUrl} className="w-[400px] h-[400px]" key={index} />
+                ))}
+            </>
+        )
+    } else {
+        return (
+            <>
+                {list.map((item, index) => (
+                    <video className="w-[400px] h-[400px]" controls >
+                        <source src={item.fileUrl} type="video/mp4" />
+                    </video>
+                ))}
+            </>
+        )
+    }
 }
