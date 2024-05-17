@@ -5,17 +5,20 @@ import { Image } from "@nextui-org/react";
 import MenuItem from '@/components/menuItem'
 import { useRouter } from 'next/router';
 import { apiIndex } from '@/config/api/api'
-
+import axios from 'axios';
 export async function getStaticProps() {
     // 在这里获取数据
     try {
         // 在这里获取数据
         const { data } = await apiIndex();
-        console.log('data======', data)
+        const res = await axios('https://restapi.amap.com/v3/weather/weatherInfo?key=7dc8e5ded616012955e72c79bc23d984&city=520111');
+        const data1 = await res.data.lives;
+
         // 返回数据作为 props
         return {
             props: {
                 data,
+                data1
             },
         };
     } catch (error) {
@@ -24,11 +27,14 @@ export async function getStaticProps() {
         return {
             props: {
                 data: null, // 返回空数据或者错误信息
+                data1: null,
                 error: 'Failed to fetch data',
             },
         };
     }
 }
+
+
 
 const CultureItem = ({ name, cover, introduce, current, onChildEvent }) => {
     const numList = ['壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖', '拾']
@@ -49,7 +55,7 @@ const CultureItem = ({ name, cover, introduce, current, onChildEvent }) => {
                 <img className={styles.cultureBg} src="/images/title-bg.png" />
             </div>
             <div className="flex-1">
-                <div className="text-[18px] tracking-[5px] leading-8   line-clamp-3 text-[#692A1B] font-semibold mb-8">{introduce}</div>
+                <div className="h-[100px] text-[18px] tracking-[5px] leading-8   line-clamp-3 text-[#692A1B] font-semibold mb-8">{introduce}</div>
                 <img className="w-[408px] h-[320px]" src={cover} />
             </div>
         </div>
@@ -117,6 +123,7 @@ const CardT = ({ current, list, info, onChildEvent }) => {
         return (
             <div className=" px-5">
                 <HeadTitle title1={info.scenicSpotName} title2="Scenic spot publicity" title3="景区宣传" />
+
                 <div className="flex">
                     <img className='rounded-[20px] w-[594px] h-[430px]' src={info.coverPicture} />
                     <div className="px-5 flex-1 flex flex-col">
@@ -125,7 +132,7 @@ const CardT = ({ current, list, info, onChildEvent }) => {
                             <div className="text-[#D44926] mx-3 text-[24px] tracking-[5px]">-  {info.scenicSpotName}  -</div>
                             <div className={styles.sanjiaoB} />
                         </div>
-                        <div className="text-[#692A1B] text-[18px] tracking-[5px] mt-[20px] leading-8 font-semibold">
+                        <div className="text-[#692A1B] text-[18px] tracking-[5px] mt-[20px] leading-8 font-semibold h-[190px] line-clamp-6 overflow-hidden">
 
                             <div dangerouslySetInnerHTML={{ __html: info.scenicSpotIntroduce }} />
                         </div>
@@ -158,15 +165,17 @@ const CardT = ({ current, list, info, onChildEvent }) => {
 
 }
 
-export default function IndexPage({ data }) {
+export default function IndexPage({ data, data1 }) {
     const router = useRouter();
-    console.log('data===', data)
     const [current, setcurrent] = useState(0);
     const [scenicInfo, setScenicInfo] = useState({});
 
     const handleClick = (index) => {
         setcurrent(index); // 切换 clicked 的值
     };
+
+
+
     const tabList = [{
         label: '景区介绍',
     }, {
@@ -187,6 +196,7 @@ export default function IndexPage({ data }) {
     }
     useEffect(() => {
         data && setScenicInfo(data.scenicSpotList[0])
+
     }, []);
     return (
         <div>
@@ -236,6 +246,19 @@ export default function IndexPage({ data }) {
                 <div className="max-w-7xl mx-auto">
                     <HeadTitle title1="参与活动" title2="Scenic spot publicity" title3="景区宣传" />
 
+                    <div className="px-4 mb-4">
+                        <div className='w-full h-[65px] bg-[#F5EDD0] rounded flex items-center p-7'>
+                            <img src="/images/weather.png" className='w-[38px] h-[32px]' />
+                            <span className="text-[#D44926] text-[20px] tracking-[10px] font-black ml-4">青岩古镇</span>
+                            <span className="text-[#D44926] text-[20px] tracking-[10px] ml-8">
+                                <span className="mr-4">当前温度:{data1[0].temperature}°</span>
+                                <span>{data1[0].weather}</span>
+                                <span>{data1[0].winddirection}{data1[0].windpower}</span>
+
+                            </span>
+
+                        </div>
+                    </div>
                     <div className="flex  p-4">
                         <div className="w-full md:w-3/5">
                             <Image
@@ -260,7 +283,7 @@ export default function IndexPage({ data }) {
                         </div>
                         <div className="w-full ml-3 md:w-3/5 flex flex-col p-6">
                             {data && data.consultList.map((item, index) => (
-                                <div className="mb-3 group cursor-pointer" onClick={() => jumpDetail(item, 1)}>
+                                <div key={index} className="mb-3 group cursor-pointer" onClick={() => jumpDetail(item, 1)}>
                                     <div className="flex items-center px-5 bg-[#fff] h-[70px]" >
                                         <span className={index < 3 ? 'text-[#D44926] text-3xl font-bold' : 'text-[#1A1818] text-3xl font-bold'}>
                                             {index + 1}

@@ -140,7 +140,7 @@ export const Navbar = () => {
 
 			<NavbarContent className="gap-16 ml-8">
 				{siteConfig.navItems.map((item, index) => (
-					<NavbarItem className="gap-84" isActive={router.pathname === item.href}>
+					<NavbarItem key={index} className="gap-84" isActive={router.pathname === item.href}>
 						<Link color="primary" className="text-[24px] text-[#D44926]" href={item.href} key={index}>
 							{item.label}
 						</Link>

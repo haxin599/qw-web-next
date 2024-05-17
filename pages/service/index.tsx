@@ -8,9 +8,72 @@ import {
 
 import { Button } from "@nextui-org/react";
 import { useRouter } from 'next/router';
+import axios from 'axios';
+
+export async function getStaticProps() {
+    // 在这里获取数据
+    try {
+        const res = await axios('https://restapi.amap.com/v3/weather/weatherInfo?key=7dc8e5ded616012955e72c79bc23d984&city=520111');
+        const data1 = await res.data.lives;
+
+        // 返回数据作为 props
+        return {
+            props: {
+                data1
+            },
+        };
+    } catch (error) {
+        // 处理数据获取失败的情况
+        console.error('Error fetching data:', error);
+        return {
+            props: {
+                data1: null,
+                error: 'Failed to fetch data',
+            },
+        };
+    }
+}
+
+export default function Service({ data1 }) {
+
+    const [current, setcurrent] = useState(0);
+    const router = useRouter();
+    const handleClick = (index) => {
+        setcurrent(index); // 切换 clicked 的值
+        router.push('/service?current=' + index);
+    };
+    const infoList = [{
+        label: '门票预订',
+    }, {
+        label: '酒店名宿'
+    }, {
+        label: '古镇商城'
+    }, {
+        label: '景区导览'
+    }, {
+        label: '交通指南'
+    }, {
+        label: '景区停车场'
+    }]
+
+    return (
+        <div>
+            <section>
+                <img className="w-full mt-[-68px]" src="https://img.zcool.cn/community/01f8f95c1c48c0a8012029ac57a301.jpg@1280w_1l_2o_100sh.jpg" />
+            </section>
+            <section className="bg-[#692A1B]">
+                <div className="max-w-7xl  mx-auto">
+                    <MenuItem infoList={infoList} current={current} onChildEvent={handleClick} />
+                </div>
+            </section>
+            <Content current={current} weather={data1} />
+        </div >
+    );
+}
 
 
-const Content = ({ current }) => {
+
+const Content = ({ current, weather }) => {
     const list = [1, 2, 3, 4, 5, 6, 7, 8]
     if (current === 0) {
         return (
@@ -24,7 +87,12 @@ const Content = ({ current }) => {
                         <div className='w-full h-[65px] bg-[#fff] ml-8 rounded flex items-center p-7'>
                             <img src="/images/weather.png" className='w-[38px] h-[32px]' />
                             <span className="text-[#D44926] text-[20px] tracking-[10px] font-black ml-4">青岩古镇</span>
-                            <span className="text-[#D44926] text-[20px] tracking-[10px] ml-8">多云 23°~30°</span>
+                            <span className="text-[#D44926] text-[20px] tracking-[10px] ml-8">
+                                <span className="mr-4">当前温度:{weather[0].temperature}°</span>
+                                <span>{weather[0].weather}</span>
+                                <span>{weather[0].winddirection}{weather[0].windpower}</span>
+
+                            </span>
                         </div>
                     </div>
                     <div className="flex  p-6">
@@ -131,7 +199,7 @@ const Content = ({ current }) => {
                     </div>
                     <div className="grid grid-cols-3  gap-8 mt-[50px]">
                         {list.map((item, index) => (
-                            <div className='cursor-pointer'>
+                            <div className='cursor-pointer' key={index}>
                                 <img className='rounded-[15px] w-[392px] h-[398px]' src="https://img.js.design/assets/img/6628c4d76712d63aadab2af3.jpg#ba8134feaecbe3c458a289f90dbc52eb" alt="" />
                                 <div className='flex flex-col'>
                                     <h1 className='text-[#163235] text-[32px] font-bold mt-6'>青岩旅拍</h1>
@@ -151,39 +219,3 @@ const Content = ({ current }) => {
     }
 }
 
-export default function Service() {
-
-    const [current, setcurrent] = useState(0);
-    const router = useRouter();
-    const handleClick = (index) => {
-        setcurrent(index); // 切换 clicked 的值
-        router.push('/service?current=' + index);
-    };
-    const infoList = [{
-        label: '门票预订',
-    }, {
-        label: '酒店名宿'
-    }, {
-        label: '古镇商城'
-    }, {
-        label: '景区导览'
-    }, {
-        label: '交通指南'
-    }, {
-        label: '景区停车场'
-    }]
-
-    return (
-        <div>
-            <section>
-                <img className="w-full mt-[-68px]" src="https://img.zcool.cn/community/01f8f95c1c48c0a8012029ac57a301.jpg@1280w_1l_2o_100sh.jpg" />
-            </section>
-            <section className="bg-[#692A1B]">
-                <div className="max-w-7xl  mx-auto">
-                    <MenuItem infoList={infoList} current={current} onChildEvent={handleClick} />
-                </div>
-            </section>
-            <Content current={current} />
-        </div >
-    );
-}

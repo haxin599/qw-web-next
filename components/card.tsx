@@ -63,9 +63,9 @@ export default function Cards({ type = 1 }) {
                 </div >
                 <div className="grid grid-cols-3  gap-8  max-w-7xl mx-auto  p-6">
                     {list.map((item, index) => (
-                        <div className='cursor-pointer'>
-                            <img className='rounded-[10px] w-[396px] h-[308px]' src="https://img.js.design/assets/img/6628c4d76712d63aadab2af3.jpg#ba8134feaecbe3c458a289f90dbc52eb" alt="" />
-                            <h1 className='text-[#692A1B] text-[18px]  tracking-[5px] font-semibold mt-6'>青岩城为满足军事需要而修建，古为屯田驻兵之地， 素有“茶马古道”“南部要塞"之称</h1>
+                        <div className='cursor-pointer' key={index}>
+                            <img className='rounded-[10px] w-[396px] h-[308px]' src="https://img.js.design/assets/img/6628c4d76712d63aadab2af3.jpg#ba8134feaecbe3c458a289f90dbc52eb" />
+                            <h1 className='text-[#692A1B] text-[18px]  tracking-[5px] font-semibold mt-6'>青岩城为满足军事需要而修建，古为屯田驻兵之地</h1>
                         </div>
 
                     ))}
@@ -104,9 +104,9 @@ export default function Cards({ type = 1 }) {
                 </div >
                 <div className="grid grid-cols-2  gap-8  max-w-7xl mx-auto  p-6">
                     {list.map((item, index) => (
-                        <div className='cursor-pointer'>
-                            <img className='rounded-[10px] w-[590px] h-[455px]' src="https://img.js.design/assets/img/6628c4d76712d63aadab2af3.jpg#ba8134feaecbe3c458a289f90dbc52eb" alt="" />
-                            <h1 className='text-[#692A1B] text-[18px]  tracking-[5px] font-semibold mt-6'>青岩城为满足军事需要而修建，古为屯田驻兵之地， 素有“茶马古道”“南部要塞"之称</h1>
+                        <div className='cursor-pointer' key={index}>
+                            <img className="rounded-[10px] w-[590px] h-[455px]" src="https://img.js.design/assets/img/6628c4d76712d63aadab2af3.jpg#ba8134feaecbe3c458a289f90dbc52eb" />
+                            <h1 className="text-[#692A1B] text-[18px]  tracking-[5px] font-semibold mt-6">青岩城为满足军事需要而修建，古为屯田驻兵之地</h1>
                         </div>
 
                     ))}

@@ -7,6 +7,7 @@ export default function DefaultLayout({
 }: {
 	children: React.ReactNode;
 }) {
+
 	return (
 		<div className="relative flex flex-col h-screen" style={{ minWidth: '1080px' }}>
 			<Head />

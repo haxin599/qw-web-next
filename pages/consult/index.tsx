@@ -4,7 +4,7 @@ import MenuItem from '@/components/menuItem'
 import { Divider } from "@nextui-org/react";
 import { apiConsult } from '@/config/api/api'
 import { format } from 'date-fns';
-
+import { Image } from '@nextui-org/react';
 export async function getStaticProps() {
     // 在这里获取数据
     try {
@@ -69,15 +69,15 @@ export default function Consult({ data }) {
                     <MenuItem infoList={infoList} current={current} onChildEvent={handleClick} />
                 </div>
             </section>
-            <section className="">
+            <section className="my-6">
                 <div className="max-w-7xl  mx-auto p-4 gap-8 grid grid-cols-2 flex flex-wrap">
                     {list && list.map((item, index) => (
                         <div className='flex  bg-[#F5EDD0] rounded-[10px] cursor-pointer' key={index} onClick={() => jump(item.id, (index + 1))}>
-                            <img className='w-1/2' src={item.picture} />
-                            <div className='w-1/2 p-[20px] flex flex-col'>
+                            <Image className='w-[400px] h-400px ' radius="md" src={item.picture} />
+                            <div className='w-full p-[20px] flex flex-col'>
                                 <h1 className='text-[#D44926] text-[36px] tracking-[2px]'>{item.infoTitle}</h1>
 
-                                <div className='text-[#692A1B] text-[18px] font-semibold tracking-[5px] mt-4  line-clamp-3'>
+                                <div className='text-[#692A1B] text-[18px] overflow-hidden line-clamp-2 h-[100px] font-semibold tracking-[5px] mt-4 '>
                                     <div dangerouslySetInnerHTML={{ __html: item.infoContent }} />
                                 </div>
 

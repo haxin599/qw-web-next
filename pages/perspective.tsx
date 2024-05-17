@@ -140,7 +140,7 @@ const Media = ({ list, type }) => {
         return (
             <>
                 {list.map((item, index) => (
-                    <img src={item.fileUrl} className="w-[400px] h-[400px]" key={index} />
+                    <Image src={item.fileUrl} className="w-[400px] h-[400px]" key={index} loading="lazy" radius="sm" />
                 ))}
             </>
         )
@@ -148,7 +148,7 @@ const Media = ({ list, type }) => {
         return (
             <>
                 {list.map((item, index) => (
-                    <video className="w-[400px] h-[400px]" controls >
+                    <video key={index} className="w-[400px] h-[400px]" controls >
                         <source src={item.fileUrl} type="video/mp4" />
                     </video>
                 ))}
